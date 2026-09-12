@@ -1,6 +1,6 @@
 cask "codexmulti" do
-  version "0.2.0"
-  sha256 "4c34783c72ac828b10225d6f84d56a433cb4f2d03df2a26426c7598e18d30334"
+  version "0.2.1"
+  sha256 "98fb5e60f5f86476f39c201f2c45383624f94608c5918dd8cb3d9f56500a16c8"
 
   url "https://github.com/moonsunkim/codexmulti/releases/download/v#{version}/CodexMulti-#{version}.zip"
   name "CodexMulti"
@@ -20,9 +20,4 @@ cask "codexmulti" do
     "~/Library/Preferences/dev.codexmulti.app.plist",
   ]
 
-  caveats <<~EOS
-    This release is not notarized. macOS blocks the first launch: open CodexMulti once,
-    dismiss the dialog, then in System Settings > Privacy & Security press "Open Anyway"
-    next to CodexMulti and confirm. Notarized releases will open directly.
-  EOS
 end
