@@ -1,6 +1,6 @@
 cask "codexmulti" do
-  version "0.2.6"
-  sha256 "f326e48a9438d7cbb8aabefbd73ad5fd828b921ddf852f3574f16395bcbd2dd4"
+  version "0.2.7"
+  sha256 "b9ae32a434badef3d90be33b567b19bc9a669cd0dd317dcff18a523e2450d4dc"
 
   url "https://github.com/moonsunkim/codexmulti/releases/download/v#{version}/CodexMulti-#{version}.zip"
   name "CodexMulti"
@@ -8,15 +8,17 @@ cask "codexmulti" do
   homepage "https://github.com/moonsunkim/codexmulti"
 
   depends_on arch: :arm64
-  depends_on macos: ">= :tahoe"
+  depends_on macos: :tahoe
+
+  auto_updates true
 
   app "CodexMulti.app"
 
   uninstall quit: "dev.codexmulti.app",
             on_upgrade: :quit,
-            script: {
-              executable: "#{appdir}/CodexMulti.app/Contents/Helpers/codexmulti-maintenance",
-              args: ["prepare-uninstall"],
+            early_script: {
+              executable: "#{appdir}/CodexMulti.app/Contents/Helpers/codexmulti-update-agent",
+              args: ["homebrew-uninstall", "--app", "#{appdir}/CodexMulti.app"],
               sudo: false,
               must_succeed: true,
             }
